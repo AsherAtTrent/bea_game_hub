@@ -11,21 +11,24 @@ pub fn food_spawner(
     food_position: Query<&super::Position, With<super::Food>>,
 ) {
     let mut positions: Vec<super::Position> = Vec::new();
-    for x in 0..super::ARENA_WIDTH{
-        for y in 0..super::ARENA_HEIGHT{
+    for x in 0..super::ARENA_WIDTH {
+        for y in 0..super::ARENA_HEIGHT {
             let mut occupied = false;
-            for pos in segment_position.iter(){
-                if pos.x == x as i32 && pos.y == y as i32{
+            for pos in segment_position.iter() {
+                if pos.x == x as i32 && pos.y == y as i32 {
                     occupied = true;
                 }
             }
-            for pos in food_position.iter(){
-                if pos.x == x as i32 && pos.y == y as i32{
+            for pos in food_position.iter() {
+                if pos.x == x as i32 && pos.y == y as i32 {
                     occupied = true;
                 }
             }
-            if !occupied{
-                positions.push(super::Position{x: x as i32, y: y as i32});
+            if !occupied {
+                positions.push(super::Position {
+                    x: x as i32,
+                    y: y as i32,
+                });
             }
         }
     }
