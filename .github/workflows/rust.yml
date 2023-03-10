@@ -28,7 +28,17 @@ jobs:
       run: |
         cargo build --release --target wasm32-unknown-unknown
         wasm-bindgen --out-dir ./web/ --target web ./target/wasm32-unknown-unknown/release/bea_game_hub.wasm
-    - name: serve
+    - name: pages
+      uses: actions/upload-pages-artifact@v1.0.7
+      with:
+       # Path of the directory containing the static assets.
+        path: ./web
+    - name: Deploy GitHub Pages site
+      uses: actions/deploy-pages@v1.2.5
+      with:
+        # Maximum number of status report errors before cancelling a deployment (default: 10)
+        error_count: 1
+
         
     
     
